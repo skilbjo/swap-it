@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -eoux pipefail
+
+function install() {
+  if [[ $(head -n1 /etc/os-release) = "Arch Linux ARM" ]]
+  then
+    touch /etc/systemd/system/swap-me.service && \
+      cp resources/swap-me.service /etc/systemd/system/swap-me.service
+  fi
+}
+
+function uninstall() {
+  if [[ $(head -n1 /etc/os-release) = "Arch Linux ARM" ]]
+  then
+    rm resources/swap-me.service /etc/systemd/system/swap-me.service
+  fi
+}
+
+function turn-me-on() {
+  sudo systemctl enable swap-me.service
+}
+
+function turn-me-off() {
+  sudo systemctl enable swap-me.service
+}
+
+is-arch && \
+  turn-me-on

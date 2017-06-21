@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -eoux pipefail
+
+mnt_pnt="~/mnt/usb-drive"
+
+function setup() {
+  # is the bash command -d?
+  if [[ ! -d $mnt_pnt ]]; then
+    mkdir -p $mnt_pnt
+  fi
+}
+
+function mount-me() {
+  if [[ "" ]]; then
+    sudo -A mount /dev/sdb1 "$mnt_pnt"
+  fi
+}
+
+function swap-me() {
+  sudo swapon "$mnt_pnt"
+}
+
+function dismount() {
+  if [[ "" ]]; then
+    sudo swapoff
+    sudo umount "$mnt_pnt"
+  fi
+}
+
+setup && \
+  mount-me && \
+  swap-me

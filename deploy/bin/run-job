@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -eoux pipefail
+
+echo "I don't do much, yet..."

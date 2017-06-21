@@ -1,0 +1,8 @@
+[Unit]
+Description=Script
+
+[Service]
+ExecStart=/usr/bin/swap-me
+
+[Install]
+WantedBy=multi-user.target
